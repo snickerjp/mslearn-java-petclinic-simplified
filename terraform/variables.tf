@@ -1,6 +1,6 @@
 variable "resource_group" {
   description = "The resource group"
-  default = "quuu5Tee-rg-demo"
+  default = "demo-quuu5Tee"
 }
 
 variable "application_name" {
