@@ -12,3 +12,5 @@ variable "location" {
   description = "The Azure location where all resources in this example should be created"
   default     = "westeurope"
 }
+
+variable "resource_group_name_prefix" {}
