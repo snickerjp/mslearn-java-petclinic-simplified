@@ -174,6 +174,7 @@ resource "azurerm_app_service_plan" "main" {
   }
 }
 
+
 # This creates the service definition
 resource "azurerm_app_service" "main" {
   name                = var.application_name
