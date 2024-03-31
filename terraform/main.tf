@@ -33,10 +33,10 @@ resource "azurerm_resource_group" "main" {
 #   override_special = "_%@"
 # }
 
-# Generate random resource group name
-resource "random_pet" "rg_name" {
-  prefix = var.resource_group_name_prefix
-}
+# # Generate random resource group name
+# resource "random_pet" "rg_name" {
+#   prefix = var.resource_group_name_prefix
+# }
 
 resource "azurerm_resource_group" "rg" {
   location = var.location
@@ -150,12 +150,14 @@ resource "azurerm_mysql_flexible_database" "main" {
 }
 
 # This rule is to enable the 'Allow access to Azure services' checkbox
-resource "azurerm_mysql_firewall_rule" "main" {
-  name                = "${azurerm_resource_group.main.name}-mysql-firewall"
-  resource_group_name = azurerm_resource_group.main.name
+resource "azurerm_mysql_flexible_server_firewall_rule" "main" {
+  name                = "${azurerm_resource_group.rg.name}-mysql-firewall"
+  resource_group_name = azurerm_resource_group.rg.name
   server_name         = azurerm_mysql_flexible_server.default.name
   start_ip_address    = "0.0.0.0"
   end_ip_address      = "0.0.0.0"
+
+  depends_on = [azurerm_mysql_flexible_server.default]
 }
 
 # This creates the plan that the service use
@@ -171,6 +173,7 @@ resource "azurerm_app_service_plan" "main" {
     size = "P1v2"
   }
 }
+
 
 # This creates the service definition
 resource "azurerm_app_service" "main" {
