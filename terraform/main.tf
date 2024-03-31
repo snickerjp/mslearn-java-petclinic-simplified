@@ -150,9 +150,9 @@ resource "azurerm_mysql_flexible_database" "main" {
 }
 
 # This rule is to enable the 'Allow access to Azure services' checkbox
-resource "azurerm_mysql_firewall_rule" "main" {
-  name                = "${azurerm_resource_group.main.name}-mysql-firewall"
-  resource_group_name = azurerm_resource_group.main.name
+resource "azurerm_mysql_flexible_server_firewall_rule" "main" {
+  name                = "${azurerm_resource_group.rg.name}-mysql-firewall"
+  resource_group_name = azurerm_resource_group.rg.name
   server_name         = azurerm_mysql_flexible_server.default.name
   start_ip_address    = "0.0.0.0"
   end_ip_address      = "0.0.0.0"
