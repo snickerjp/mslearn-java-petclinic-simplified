@@ -156,6 +156,8 @@ resource "azurerm_mysql_firewall_rule" "main" {
   server_name         = azurerm_mysql_flexible_server.default.name
   start_ip_address    = "0.0.0.0"
   end_ip_address      = "0.0.0.0"
+
+  depends_on = [azurerm_mysql_flexible_server.default]
 }
 
 # This creates the plan that the service use
