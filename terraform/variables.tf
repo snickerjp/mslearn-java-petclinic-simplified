@@ -13,4 +13,4 @@ variable "location" {
   default     = "westeurope"
 }
 
-variable "resource_group_name_prefix" {}
+# variable "resource_group_name_prefix" {}
